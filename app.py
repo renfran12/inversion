@@ -1,10 +1,7 @@
-from flask import render_template
 import flask
 from flask import send_from_directory, request
 import pandas as pd
 import json
-import plotly
-import plotly.express as px
 
 
 data = pd.read_csv('FDI_Case_Study.csv', header=0)
@@ -50,21 +47,9 @@ def proporcion():
 
 
 @app.route('/')
-def notdash():
-   df = pd.DataFrame({
-      'Fruit': ['Apples', 'Oranges', 'Bananas', 'Apples', 'Oranges', 'Bananas'],
-      'Amount': [4, 1, 2, 2, 4, 5],
-      'City': ['SF', 'SF', 'SF', 'Montreal', 'Montreal', 'Montreal']
-   })
-   fig = px.bar(df, x='Fruit', y='Amount', color='City',    barmode='group')
-   graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-   return render_template('notdash.html', graphJSON=graphJSON)
-
-'''
 @app.route('/home')
 def home():
     return "Hello World"
-'''
 
 @app.route('/webhook', methods=['POST'])
 def webhook():

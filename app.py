@@ -1,7 +1,6 @@
 import flask
 from flask import send_from_directory, request
 import pandas as pd
-import json
 
 
 data = pd.read_csv('FDI_Case_Study.csv', header=0)

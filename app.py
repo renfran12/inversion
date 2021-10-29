@@ -49,7 +49,7 @@ def proporcion():
     return resp
 
 
-@app.route('/')
+@app.route('/home')
 def notdash():
    df = pd.DataFrame({
       'Fruit': ['Apples', 'Oranges', 'Bananas', 'Apples', 'Oranges', 'Bananas'],
@@ -60,10 +60,11 @@ def notdash():
    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
    return render_template('notdash.html', graphJSON=graphJSON)
 
+'''
 @app.route('/home')
 def home():
     return "Hello World"
-
+'''
 
 @app.route('/webhook', methods=['POST'])
 def webhook():

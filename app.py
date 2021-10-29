@@ -51,6 +51,7 @@ def proporcion():
 def home():
     return "Hello World"
 
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True,force=True)

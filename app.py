@@ -49,7 +49,7 @@ def proporcion():
     return resp
 
 
-@app.route('/home')
+@app.route('/')
 def notdash():
    df = pd.DataFrame({
       'Fruit': ['Apples', 'Oranges', 'Bananas', 'Apples', 'Oranges', 'Bananas'],

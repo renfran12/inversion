@@ -45,15 +45,6 @@ def proporcion():
     return resp
 
 
-def actualizar(sector, fecha, fida):
-    datai.at[sector, fecha] = fida
-    datai.to_csv(path_or_buf="FDI_Case_Study.csv", mode="w", encoding="utf-8")
-    datav = pd.read_csv('FDI_Case_Study.csv', header=0)
-    datav = datav.set_index('Sector', drop=True)
-    valorv = datav.at[sector, fecha]
-    return valorv
-
-
 @app.route('/')
 @app.route('/home')
 def home():
@@ -112,16 +103,6 @@ def webhook():
         try:
             tupla = proporcion()
             fulfillmentText = f'El sector {tupla[1]} tiene la mayor proporción con el {round(tupla[0],2)}% de participación de inversión'
-        except:
-            fulfillmentText = 'Intente de nuevo'
-
-    elif query_result.get('action') == 'ingresar_fid':
-        try:
-            sector = str(query_result.get('parameters').get('sectora'))
-            fechaa = str(query_result.get('parameters').get('fechaa'))
-            fid = float(query_result.get('parameters').get('fida'))
-            actualizacion = actualizar(sector, fechaa, fid)
-            fulfillmentText = f'El nuevo FID del sector {sector} es {actualizacion} en el año {fechaa}'
         except:
             fulfillmentText = 'Intente de nuevo'
 

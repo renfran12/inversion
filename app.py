@@ -88,10 +88,31 @@ def webhook():
         except:
             fulfillmentText = 'Intente de nuevo'
 
+    elif query_result.get('action') == 'decrecimiento':
+        try:
+            crede = str(query_result.get('parameters').get('crede'))
+            fechai = str(query_result.get('parameters').get('fechai'))
+            fechaf = str(query_result.get('parameters').get('fechaf'))
+            cant = int(query_result.get('parameters').get('cant'))
+            resp = crecimiento(cant,fechai,fechaf, crede)
+            fulfillmentText = f'Hola {resp}'
+        except:
+            fulfillmentText = 'Intente de nuevo'
+
     elif query_result.get('action') == 'proporcion':
         try:
             tupla = proporcion()
             fulfillmentText = f'El sector {tupla[1]} tiene la mayor proporción con el {round(tupla[0],2)}% de participación de inversión'
+        except:
+            fulfillmentText = 'Intente de nuevo'
+
+    elif query_result.get('action') == 'ingresar_fid':
+        try:
+            sector = str(query_result.get('parameters').get('sectora'))
+            fechaa = str(query_result.get('parameters').get('fechaa'))
+            fid = float(query_result.get('parameters').get('fida'))
+            actualizacion = actualizar(sector, fechaa, fid)
+            fulfillmentText = f'El nuevo FID del sector {sector} es {actualizacion} en el año {fechaa}'
         except:
             fulfillmentText = 'Intente de nuevo'
 

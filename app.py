@@ -45,6 +45,15 @@ def proporcion():
     return resp
 
 
+def actualizar(sector, fecha, fida):
+    datai.at[sector, fecha] = fida
+    datai.to_csv(path_or_buf="FDI_Case_Study.csv", mode="w", encoding="utf-8")
+    datav = pd.read_csv('FDI_Case_Study.csv', header=0)
+    datav = datav.set_index('Sector', drop=True)
+    valorv = datav.at[sector, fecha]
+    return valorv
+
+
 @app.route('/')
 @app.route('/home')
 def home():
